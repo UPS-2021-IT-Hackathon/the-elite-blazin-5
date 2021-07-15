@@ -1,0 +1,12 @@
+.loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    font-size: 80px;
+    margin-left: -260px;
+    margin-top: -45px;
+}
+
+.hidden {
+    display: none;
+}
