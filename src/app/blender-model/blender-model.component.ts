@@ -61,6 +61,14 @@ export class BlenderModelComponent implements OnInit {
       console.error(error);
     });
 
+  const geometry = new THREE.BoxGeometry( 5, 5, 5);
+  const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+  const fuelcube = new THREE.Mesh( geometry, material );
+  fuelcube.position.x = 30;
+  fuelcube.position.y = 8;
+  fuelcube.position.z = 10;
+  scene.add( fuelcube );
+
     camera.position.set(-100, 100, 100);
 
     renderer.render(scene, camera);
