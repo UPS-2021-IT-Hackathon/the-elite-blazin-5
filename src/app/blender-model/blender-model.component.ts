@@ -51,7 +51,7 @@ export class BlenderModelComponent implements OnInit {
       console.error(error);
     });
 
-    camera.position.set(-1.5, 1.5, 6.5);
+    camera.position.set(-100, 100, 100);
 
     renderer.render(scene, camera);
 
