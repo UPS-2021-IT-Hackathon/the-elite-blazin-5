@@ -20,7 +20,7 @@ export class BlenderModelComponent implements OnInit {
   ngOnInit(): void {
     const scene = new THREE.Scene();
     scene.background = new Color('white');
-    const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
     
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -28,21 +28,26 @@ export class BlenderModelComponent implements OnInit {
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
-    const material = new THREE.MeshBasicMaterial({color: 0x00ffaa});
+    const light = new THREE.AmbientLight(0xffffff);
+    scene.add(light);
+
+    // const material = new THREE.MeshBasicMaterial({color: 0x00ffaa});
 
     const loader = new GLTFLoader();
     
-    loader.load('../assets/untitled.glb', (gltf) => {
+    loader.load('../assets/UPSPlane.glb', (gltf) => {
 
       gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-          child.material = material;
+          child.material.metalness = 0;
         }
       });
       
       scene.add(gltf.scene);
     
-    }, undefined, (error) => {
+    }, (event) => {
+      console.log(event)
+    }, (error) => {
       console.error(error);
     });
 
