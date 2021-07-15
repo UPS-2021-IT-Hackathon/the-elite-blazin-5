@@ -15,11 +15,13 @@ export class BlenderModelComponent implements OnInit {
   paragraphText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies erat sem, at viverra sem aliquam sit amet. Phasellus accumsan sem at tempor aliquam. Phasellus porttitor, tellus vel iaculis ultrices, mi leo fringilla velit, eget volutpat magna eros a velit. Cras mi diam, condimentum at porttitor et, rhoncus a nibh. Mauris malesuada tortor non purus vulputate, vitae pharetra velit fringilla. Pellentesque quam tellus, tristique non rutrum non, sollicitudin quis turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit convallis blandit. Aenean sollicitudin nisi at tellus rutrum pretium sed accumsan massa. Proin rhoncus sodales elementum. Ut quis porttitor sem. Curabitur volutpat varius leo. Donec pretium tellus tincidunt nisi tempor condimentum.';
   titleText = 'Test Title';
 
+  percent = 0.0;
+
   constructor() { }
 
   ngOnInit(): void {
     const scene = new THREE.Scene();
-    scene.background = new Color('white');
+    scene.background = new Color('skyblue');
     const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
 
     const renderer = new THREE.WebGLRenderer();
@@ -54,7 +56,7 @@ export class BlenderModelComponent implements OnInit {
       scene.add(gltf.scene);
 
     }, (event) => {
-      console.log(event)
+      this.percent = (event.loaded / event.total) * 100;
     }, (error) => {
       console.error(error);
     });
