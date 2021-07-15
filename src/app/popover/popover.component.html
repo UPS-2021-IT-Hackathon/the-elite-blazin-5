@@ -1,0 +1,8 @@
+<div class="popover-background" (click)="hidePopover()" [ngClass]="{'backdrop-shown': shown}"></div>
+<div class="popover-container" [ngClass]="{'shown': shown}">
+    <div class="content-container">
+        <h2 class="popover-title">{{title}}</h2>
+        <p class="popover-text">{{paragraphText}}</p>
+        <img class="popover-image" src="../../assets/images/{{imageName}}">
+    </div>
+</div>
