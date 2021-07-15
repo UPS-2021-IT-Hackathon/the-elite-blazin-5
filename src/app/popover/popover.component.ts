@@ -28,7 +28,7 @@ export class PopoverComponent implements OnInit {
   }
 
   showPopover() {
-    this.shown = false;
+    this.shown = true;
   }
 
 }

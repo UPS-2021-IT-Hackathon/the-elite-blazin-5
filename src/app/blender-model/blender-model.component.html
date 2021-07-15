@@ -1,4 +1,4 @@
-<app-popover [title]="titleText" [paragraphText]="paragraphText"></app-popover>
+<app-popover [title]="titleText" [paragraphText]="paragraphText" [imageName]="image" #popover></app-popover>
 <div class="loading" [ngClass]="{'hidden': percent === 100}">
     Loading {{percent | number: '1.0-2'}}%
 </div>
