@@ -54,3 +54,11 @@
     width: auto;
     object-fit: contain;
 }
+
+.x-button {
+    position: absolute;
+    right: 40px;
+    top: 25px;
+    font-size: 50px;
+    user-select: none;
+}
