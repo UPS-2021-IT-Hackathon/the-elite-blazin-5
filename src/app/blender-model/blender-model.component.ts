@@ -20,6 +20,7 @@ export class BlenderModelComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    var startTime	= Date.now();
     const scene = new THREE.Scene();
     scene.background = new Color('skyblue');
     const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -61,24 +62,65 @@ export class BlenderModelComponent implements OnInit {
       console.error(error);
     });
 
-  const geometry = new THREE.BoxGeometry( 5, 5, 5);
-  const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+  const geometry = new THREE.BoxGeometry( 3, 3, 3);
+  const material = new THREE.MeshBasicMaterial( {color: 0x2DBC46} );
   const fuelcube = new THREE.Mesh( geometry, material );
   fuelcube.position.x = 30;
   fuelcube.position.y = 8;
-  fuelcube.position.z = 10;
+  fuelcube.position.z = 5;
   scene.add( fuelcube );
+
+  const cargocube = new THREE.Mesh( geometry, material );
+  cargocube.position.x = 10;
+  cargocube.position.y = 7;
+  cargocube.position.z = 50;
+  scene.add( cargocube );
+
+  const saftycube = new THREE.Mesh( geometry, material );
+  saftycube.position.x = -10;
+  saftycube.position.y = 18;
+  saftycube.position.z = 60;
+  scene.add( saftycube );
+
+  const differencescube = new THREE.Mesh( geometry, material );
+  differencescube.position.x = -7;
+  differencescube.position.y = 24;
+  differencescube.position.z = -40;
+  scene.add( differencescube );
 
     camera.position.set(-100, 100, 100);
 
     renderer.render(scene, camera);
 
+
+    const render = () => {
+
+      // make the cube bounce
+      var dtime	= Date.now() - startTime;
+      cargocube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      cargocube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      cargocube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+
+      fuelcube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      fuelcube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      fuelcube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+
+      saftycube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      saftycube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      saftycube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+
+      differencescube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      differencescube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      differencescube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+      // actually display the scene in the Dom element
+      renderer.render( scene, camera );
+    }
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update();
-      renderer.render(scene, camera);
+      //renderer.render(scene, camera);
+      render();
     }
-
     animate();
   }
 
