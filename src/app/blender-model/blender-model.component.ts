@@ -21,7 +21,7 @@ export class BlenderModelComponent implements OnInit {
     const scene = new THREE.Scene();
     scene.background = new Color('white');
     const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
-    
+
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
@@ -31,10 +31,18 @@ export class BlenderModelComponent implements OnInit {
     const light = new THREE.AmbientLight(0xffffff);
     scene.add(light);
 
-    // const material = new THREE.MeshBasicMaterial({color: 0x00ffaa});
+
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light2 = new THREE.DirectionalLight(color, intensity);
+    light2.position.set(20, 50, -400);
+    light2.target.position.set(-5, 0, 0);
+    scene.add(light2);
+    scene.add(light2.target);
+
 
     const loader = new GLTFLoader();
-    
+
     loader.load('../assets/UPSPlane.glb', (gltf) => {
 
       gltf.scene.traverse((child) => {
@@ -42,9 +50,9 @@ export class BlenderModelComponent implements OnInit {
           child.material.metalness = 0;
         }
       });
-      
+
       scene.add(gltf.scene);
-    
+
     }, (event) => {
       console.log(event)
     }, (error) => {

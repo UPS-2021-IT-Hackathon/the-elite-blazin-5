@@ -1,0 +1,8 @@
+<div class="clearances-background" (click)="hideClearances()" [ngClass]="{'backdrop-shown': shown}"></div>
+<div class="clearances-container" [ngClass]="{'shown': shown}">
+    <div class="content-container">
+        <h2 class="clearances-title">{{title}}</h2>
+        <p class="clearances-text">{{paragraphText}}</p>
+        <img class="clearances-image" src="../../assets/images/{{imageName}}">
+    </div>
+</div>
