@@ -10,23 +10,28 @@ import { PopoverComponent } from '../popover/popover.component';
 const clickData: {[index: string]: any} = {
   'fuel': {
     paragraphText: 'These planes take a lot of fuel in order to fly in the air! They have a fuel capacity of 38,615 gallons. The fueling panels are inside the wings. The tank fills up and is connected in order to even out the weight of the fuel among the plane.',
-    titleText: 'Fuel Title',
-    image: 'noImage.png'
+    titleText: 'Fuel',
+    image: 'fuel.png'
   },
   'cargo': {
     paragraphText: 'It is important to understand the different lengths of the plane in order to maneuver around it.\nThe plane is 202 feet long, as well as having a wingspan of 169’ 10’’.\nThe total area of the wing amounts to 3,648 feet.\nManually opening the door requires two people. One must open the hatch below the plane and the other has to pull the hatch in the middle of the plane to open up the side cargo door. The plane can also be loaded from the front',
-    titleText: 'Cargo Title',
-    image: 'noImage.png'
+    titleText: 'Cargo',
+    image: 'cargo.png'
   },
   'safety': {
     paragraphText: 'Make sure to know the safety protocols. From the cockpit it can be hard to see what is directly behind the plane as well as on top of the plane.  Know where the oxygen masks are. There are extra masks behind the pilot seats just in case. You can open the pilot windows with a handle crank and use ropes to get down in case of an emergency. There is a first aid kit to the left of the pilot seat.',
-    titleText: 'Safety Title',
-    image: 'noImage.png'
+    titleText: 'Safety',
+    image: 'safty.png'
   },
   'differences': {
     paragraphText: 'There are many differences between the passenger plane and the freight plane. Here is a list of some of the many differences.\nThe Passenger plane has no lower or main cargo, while the freight plan has both. \nThe passenger plane has a much larger max range with up to 8,225nm, while for the freight it is only 4,450nm.  \nThe freights max weight is 630,500 lbs while the max weight of the passenger plane varies from 602,500 - 630,500 lbs',
-    titleText: 'Differences Title',
-    image: 'noImage.png'
+    titleText: 'Differences',
+    image: 'differences.png'
+  },
+  'info': {
+    paragraphText: "MD-11 Aircraft Specifications" + "/n" +  "Length – 202’’ Wingspan- 169’ 10’’    Wing Area- 3,648ft^2Height- 57’11’’ Fuel Capacity- 38,615 Top Speed - 587 MPH",
+    titleText: 'Information',
+    image: 'info.png'
   }
 };
 
@@ -123,6 +128,13 @@ export class BlenderModelComponent implements OnInit {
     differencescube.name = 'differences';
     this.scene.add( differencescube );
 
+    const infocube = new THREE.Mesh( geometry, material );
+    infocube.position.x = 0;
+    infocube.position.y = 25;
+    infocube.position.z = 30;
+    infocube.name = 'info';
+    this.scene.add( infocube );
+
     this.camera.position.set(-100, 100, 100);
 
     renderer.render(this.scene, this.camera);
@@ -146,6 +158,10 @@ export class BlenderModelComponent implements OnInit {
       differencescube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
       differencescube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
       differencescube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+
+      infocube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      infocube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      infocube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
 
       // actually display the scene in the Dom element
       renderer.render(this.scene, this.camera );
