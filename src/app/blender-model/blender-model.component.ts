@@ -9,22 +9,22 @@ import { PopoverComponent } from '../popover/popover.component';
 
 const clickData: {[index: string]: any} = {
   'fuel': {
-    paragraphText: 'Fuel Paragraph Text',
+    paragraphText: 'These planes take a lot of fuel in order to fly in the air! They have a fuel capacity of 38,615 gallons. The fueling panels are inside the wings. The tank fills up and is connected in order to even out the weight of the fuel among the plane.',
     titleText: 'Fuel Title',
     image: 'noImage.png'
   },
   'cargo': {
-    paragraphText: 'Cargo Paragraph Text',
+    paragraphText: 'It is important to understand the different lengths of the plane in order to maneuver around it.\nThe plane is 202 feet long, as well as having a wingspan of 169’ 10’’.\nThe total area of the wing amounts to 3,648 feet.\nManually opening the door requires two people. One must open the hatch below the plane and the other has to pull the hatch in the middle of the plane to open up the side cargo door. The plane can also be loaded from the front',
     titleText: 'Cargo Title',
     image: 'noImage.png'
   },
   'safety': {
-    paragraphText: 'Safety Paragraph Text',
+    paragraphText: 'Make sure to know the safety protocols. From the cockpit it can be hard to see what is directly behind the plane as well as on top of the plane.  Know where the oxygen masks are. There are extra masks behind the pilot seats just in case. You can open the pilot windows with a handle crank and use ropes to get down in case of an emergency. There is a first aid kit to the left of the pilot seat.',
     titleText: 'Safety Title',
     image: 'noImage.png'
   },
   'differences': {
-    paragraphText: 'Differences Paragraph Text',
+    paragraphText: 'There are many differences between the passenger plane and the freight plane. Here is a list of some of the many differences.\nThe Passenger plane has no lower or main cargo, while the freight plan has both. \nThe passenger plane has a much larger max range with up to 8,225nm, while for the freight it is only 4,450nm.  \nThe freights max weight is 630,500 lbs while the max weight of the passenger plane varies from 602,500 - 630,500 lbs',
     titleText: 'Differences Title',
     image: 'noImage.png'
   }
@@ -48,7 +48,7 @@ export class BlenderModelComponent implements OnInit {
 
   @ViewChild("popover")
   popoverElement?: PopoverComponent;
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -168,7 +168,7 @@ export class BlenderModelComponent implements OnInit {
     this.raycaster.setFromCamera(pointer, this.camera);
 
     const intersects = this.raycaster.intersectObjects(this.scene.children, true);
-    
+
     if (intersects.length > 0) {
       const data = clickData[intersects[0].object.name];
       if (data) {
