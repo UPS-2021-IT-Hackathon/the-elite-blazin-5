@@ -2,7 +2,7 @@
 <div class="popover-container" [ngClass]="{'shown': shown}">
     <div class="content-container">
         <h2 class="popover-title">{{title}}</h2>
-        <p class="popover-text">{{paragraphText}}</p>
+        <p class="popover-text" *ngFor="let text of paragraphText">{{text}}</p>
         <img class="popover-image" src="../../assets/images/{{imageName}}">
     </div>
     <span class="x-button" (click)="hidePopover()">X</span>

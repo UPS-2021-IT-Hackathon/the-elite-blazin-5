@@ -15,7 +15,7 @@
 
 .content-container {
     margin: 100px;
-    margin-top: 50px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,6 +47,7 @@
 
 .popover-text {
     text-align: center;
+    margin-top: 0;
 }
 
 .popover-image {

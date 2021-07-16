@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PopoverComponent implements OnInit {
 
   @Input()
-  paragraphText = 'No extra text provided';
+  paragraphText = ['No extra text provided'];
 
   @Input()
   title = 'No Title Provided';

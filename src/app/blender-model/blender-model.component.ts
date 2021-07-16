@@ -9,32 +9,32 @@ import { PopoverComponent } from '../popover/popover.component';
 
 const clickData: {[index: string]: any} = {
   'fuel': {
-    paragraphText: 'These planes take a lot of fuel in order to fly in the air! They have a fuel capacity of 38,615 gallons. The fueling panels are inside the wings. The tank fills up and is connected in order to even out the weight of the fuel among the plane.',
+    paragraphText: ['These planes take a lot of fuel in order to fly in the air! They have a fuel capacity of 38,615 gallons. The fueling panels are inside the wings. The tank fills up and is connected in order to even out the weight of the fuel among the plane.'],
     titleText: 'Fuel',
     image: 'fuel.png'
   },
   'cargo': {
-    paragraphText: 'It is important to understand the different lengths of the plane in order to maneuver around it.\nThe plane is 202 feet long, as well as having a wingspan of 169’ 10’’.\nThe total area of the wing amounts to 3,648 feet.\nManually opening the door requires two people. One must open the hatch below the plane and the other has to pull the hatch in the middle of the plane to open up the side cargo door. The plane can also be loaded from the front',
+    paragraphText: ['It is important to understand the different lengths of the plane in order to maneuver around it.\nThe plane is 202 feet long, as well as having a wingspan of 169’ 10’’.\nThe total area of the wing amounts to 3,648 feet.\nManually opening the door requires two people. One must open the hatch below the plane and the other has to pull the hatch in the middle of the plane to open up the side cargo door. The plane can also be loaded from the front'],
     titleText: 'Cargo',
     image: 'cargo.png'
   },
   'safety': {
-    paragraphText: 'Make sure to know the safety protocols. From the cockpit it can be hard to see what is directly behind the plane as well as on top of the plane.  Know where the oxygen masks are. There are extra masks behind the pilot seats just in case. You can open the pilot windows with a handle crank and use ropes to get down in case of an emergency. There is a first aid kit to the left of the pilot seat.',
+    paragraphText: ['Make sure to know the safety protocols. From the cockpit it can be hard to see what is directly behind the plane as well as on top of the plane.', 'Know where the oxygen masks are. There are extra masks behind the pilot seats just in case. You can open the pilot windows with a handle crank and use ropes to get down in case of an emergency. There is a first aid kit to the left of the pilot seat.'],
     titleText: 'Safety',
     image: 'safty.png'
   },
   'differences': {
-    paragraphText: 'There are many differences between the passenger plane and the freight plane. Here is a list of some of the many differences.\nThe Passenger plane has no lower or main cargo, while the freight plan has both. \nThe passenger plane has a much larger max range with up to 8,225nm, while for the freight it is only 4,450nm.  \nThe freights max weight is 630,500 lbs while the max weight of the passenger plane varies from 602,500 - 630,500 lbs',
+    paragraphText: ['There are many differences between the passenger plane and the freight plane. Here is a list of some of the many differences.', 'The Passenger plane has no lower or main cargo, while the freight plan has both.', 'The passenger plane has a much larger max range with up to 8,225nm, while for the freight it is only 4,450nm.', 'The freights max weight is 630,500 lbs while the max weight of the passenger plane varies from 602,500 - 630,500 lbs'],
     titleText: 'Differences',
     image: 'differences.png'
   },
   'info': {
-    paragraphText: "MD-11 Aircraft Specifications" + "/n" +  "Length – 202’’ Wingspan- 169’ 10’’    Wing Area- 3,648ft^2Height- 57’11’’ Fuel Capacity- 38,615 Top Speed - 587 MPH",
+    paragraphText: ["MD-11 Aircraft Specifications" + "/n" +  "Length – 202’’ Wingspan- 169’ 10’’    Wing Area- 3,648ft^2Height- 57’11’’ Fuel Capacity- 38,615 Top Speed - 587 MPH"],
     titleText: 'Information',
     image: 'info.png'
   },
   'apu': {
-    paragraphText: 'The auxiliary power unit provides additional energy for functions on the aircraft. The APU creates power to operate the galley and cockpit electrics and also can heat or cool the aircraft all while being parked at the gate.The APU is important because it saves fuel as the aircraft engine does not need to be operating in order for there to be power on the aircraft.',
+    paragraphText: ['The auxiliary power unit provides additional energy for functions on the aircraft. The APU creates power to operate the galley and cockpit electrics and also can heat or cool the aircraft all while being parked at the gate.The APU is important because it saves fuel as the aircraft engine does not need to be operating in order for there to be power on the aircraft.'],
     titleText: 'APU',
     image: 'apu.png'
   }
@@ -47,7 +47,7 @@ const clickData: {[index: string]: any} = {
 })
 export class BlenderModelComponent implements OnInit {
 
-  paragraphText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies erat sem, at viverra sem aliquam sit amet. Phasellus accumsan sem at tempor aliquam. Phasellus porttitor, tellus vel iaculis ultrices, mi leo fringilla velit, eget volutpat magna eros a velit. Cras mi diam, condimentum at porttitor et, rhoncus a nibh. Mauris malesuada tortor non purus vulputate, vitae pharetra velit fringilla. Pellentesque quam tellus, tristique non rutrum non, sollicitudin quis turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit convallis blandit. Aenean sollicitudin nisi at tellus rutrum pretium sed accumsan massa. Proin rhoncus sodales elementum. Ut quis porttitor sem. Curabitur volutpat varius leo. Donec pretium tellus tincidunt nisi tempor condimentum.';
+  paragraphText = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies erat sem, at viverra sem aliquam sit amet. Phasellus accumsan sem at tempor aliquam. Phasellus porttitor, tellus vel iaculis ultrices, mi leo fringilla velit, eget volutpat magna eros a velit. Cras mi diam, condimentum at porttitor et, rhoncus a nibh. Mauris malesuada tortor non purus vulputate, vitae pharetra velit fringilla. Pellentesque quam tellus, tristique non rutrum non, sollicitudin quis turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin blandit convallis blandit. Aenean sollicitudin nisi at tellus rutrum pretium sed accumsan massa. Proin rhoncus sodales elementum. Ut quis porttitor sem. Curabitur volutpat varius leo. Donec pretium tellus tincidunt nisi tempor condimentum.'];
   titleText = 'Test Title';
   image = 'noImage.png';
 
