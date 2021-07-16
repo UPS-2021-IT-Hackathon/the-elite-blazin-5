@@ -32,6 +32,11 @@ const clickData: {[index: string]: any} = {
     paragraphText: "MD-11 Aircraft Specifications" + "/n" +  "Length – 202’’ Wingspan- 169’ 10’’    Wing Area- 3,648ft^2Height- 57’11’’ Fuel Capacity- 38,615 Top Speed - 587 MPH",
     titleText: 'Information',
     image: 'info.png'
+  },
+  'apu': {
+    paragraphText: 'The auxiliary power unit provides additional energy for functions on the aircraft. The APU creates power to operate the galley and cockpit electrics and also can heat or cool the aircraft all while being parked at the gate.The APU is important because it saves fuel as the aircraft engine does not need to be operating in order for there to be power on the aircraft.',
+    titleText: 'APU',
+    image: 'apu.png'
   }
 };
 
@@ -124,7 +129,7 @@ export class BlenderModelComponent implements OnInit {
     const differencescube = new THREE.Mesh( geometry, material );
     differencescube.position.x = -7;
     differencescube.position.y = 24;
-    differencescube.position.z = -40;
+    differencescube.position.z = -30;
     differencescube.name = 'differences';
     this.scene.add( differencescube );
 
@@ -134,6 +139,13 @@ export class BlenderModelComponent implements OnInit {
     infocube.position.z = 30;
     infocube.name = 'info';
     this.scene.add( infocube );
+
+    const apucube = new THREE.Mesh( geometry, material );
+    apucube.position.x = -2;
+    apucube.position.y = 2;
+    apucube.position.z = -45;
+    apucube.name = 'apu';
+    this.scene.add( apucube );
 
     this.camera.position.set(-100, 100, 100);
 
@@ -162,6 +174,10 @@ export class BlenderModelComponent implements OnInit {
       infocube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
       infocube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
       infocube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
+
+      apucube.scale.x	= 1.0 + 0.15*Math.sin(dtime/300);
+      apucube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
+      apucube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
 
       // actually display the scene in the Dom element
       renderer.render(this.scene, this.camera );
