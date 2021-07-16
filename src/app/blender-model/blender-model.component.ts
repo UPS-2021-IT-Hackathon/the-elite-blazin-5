@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
-import { Color, DirectionalLight, HemisphereLight, Scene } from 'three';
+import { Color, DirectionalLight, HemisphereLight, Mesh, Scene, Vector2 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { animate } from '@angular/animations';
@@ -55,6 +55,8 @@ export class BlenderModelComponent implements OnInit {
   scene: Scene = new THREE.Scene();;
   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
   raycaster = new THREE.Raycaster();
+  movingPointer = new Vector2();
+  selectedCube?: Mesh<any, any>;
 
   @ViewChild("popover")
   popoverElement?: PopoverComponent;
@@ -63,6 +65,7 @@ export class BlenderModelComponent implements OnInit {
 
   ngOnInit(): void {
     document.addEventListener('mousedown', this.onMouseDown, false);
+    document.addEventListener('mousemove', this.onMouseMove, false);
     var startTime	= Date.now();
     this.scene.background = new Color('skyblue');
 
@@ -104,43 +107,42 @@ export class BlenderModelComponent implements OnInit {
     });
 
     const geometry = new THREE.BoxGeometry( 3, 3, 3);
-    const material = new THREE.MeshBasicMaterial( {color: 0x2DBC46} );
-    const fuelcube = new THREE.Mesh( geometry, material );
+    const fuelcube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     fuelcube.position.x = 30;
     fuelcube.position.y = 8;
     fuelcube.position.z = 5;
     fuelcube.name = 'fuel';
     this.scene.add( fuelcube );
 
-    const cargocube = new THREE.Mesh( geometry, material );
+    const cargocube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     cargocube.position.x = 10;
     cargocube.position.y = 7;
     cargocube.position.z = 50;
     cargocube.name = 'cargo';
     this.scene.add( cargocube );
 
-    const saftycube = new THREE.Mesh( geometry, material );
+    const saftycube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     saftycube.position.x = -10;
     saftycube.position.y = 18;
     saftycube.position.z = 60;
     saftycube.name = 'safety'
     this.scene.add( saftycube );
 
-    const differencescube = new THREE.Mesh( geometry, material );
+    const differencescube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     differencescube.position.x = -7;
     differencescube.position.y = 24;
     differencescube.position.z = -30;
     differencescube.name = 'differences';
     this.scene.add( differencescube );
 
-    const infocube = new THREE.Mesh( geometry, material );
+    const infocube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     infocube.position.x = 0;
     infocube.position.y = 25;
     infocube.position.z = 30;
     infocube.name = 'info';
     this.scene.add( infocube );
 
-    const apucube = new THREE.Mesh( geometry, material );
+    const apucube = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x2DBC46} ) );
     apucube.position.x = -2;
     apucube.position.y = 2;
     apucube.position.z = -45;
@@ -179,6 +181,26 @@ export class BlenderModelComponent implements OnInit {
       apucube.scale.y	= 1.0 + 0.15*Math.sin(dtime/300);
       apucube.scale.z	= 1.0 + 0.15*Math.sin(dtime/300);
 
+      this.raycaster.setFromCamera(this.movingPointer, this.camera);
+
+      const intersects = this.raycaster.intersectObjects(this.scene.children);
+
+      if (intersects.length > 0) {
+        if (intersects[0].object instanceof Mesh) {
+          if (intersects[0].object != this.selectedCube) {
+            if (this.selectedCube) {
+              this.selectedCube.material.color.set(0x2DBC46);
+            }
+            intersects[0].object.material.color.set(0x0000ff);
+            this.selectedCube = intersects[0].object;
+          }
+        }
+      } else {
+        if (this.selectedCube) {
+          this.selectedCube.material.color.set(0x2DBC46);
+        }
+      }
+
       // actually display the scene in the Dom element
       renderer.render(this.scene, this.camera );
     }
@@ -189,6 +211,11 @@ export class BlenderModelComponent implements OnInit {
       render();
     }
     animate();
+  }
+
+  onMouseMove = (event: any) => {
+    this.movingPointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.movingPointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
   }
 
   onMouseDown = (event: any) => {
